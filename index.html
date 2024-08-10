@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/Navbar-Right-Links-icons.css">
     <link rel="stylesheet" href="assets/css/Projects-Grid-Horizontal-images.css">
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init("U3lccybGbVm0BCN74"); // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
+    })();
+    </script>
 </head>
 
 <body style="padding: 40px;padding-left: 0px;padding-right: 0px;margin-left: 32px;margin-right: 32px;">
@@ -216,9 +222,9 @@
                 </div>
                 <div class="col-md-6 col-lg-5 col-xl-4">
                     <div>
-                        <form class="p-3 p-xl-4" method="post">
+                        <form class="p-3 p-xl-4" id="contact-form">
                             <div class="mb-3"><input class="form-control" type="text" id="name-1" name="name" placeholder="Name"></div>
-                            <div class="mb-3"><input class="form-control" type="email" id="email-1" name="email" placeholder="Email"></div>
+                            <div class="mb-3"><input class="form-control" type="email" id="email-1" name="from_name" placeholder="Email"></div>
                             <div class="mb-3"><textarea class="form-control" id="message-1" name="message" rows="6" placeholder="Message"></textarea></div>
                             <div><button class="btn btn-primary d-block w-100" type="submit" style="background: rgb(0,0,0);">Send </button></div>
                         </form>
@@ -263,6 +269,17 @@
     </footer>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
+    <script type="text/javascript">
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+           event.preventDefault();
+           emailjs.sendForm('service_nae5tfd', 'template_74fdrmg', this)
+              .then(function() {
+                 alert('Message sent successfully!');
+              }, function(error) {
+                 alert('Failed to send message: ' + JSON.stringify(error));
+              });
+        });
+     </script>
 </body>
 
 </html>
